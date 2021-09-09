@@ -7,19 +7,9 @@ use Illuminate\Support\Facades\App;
 
 class EnvSwitch
 {
-    /** @var array $envFiles */
-    protected static $envFiles;
-
-    /**
-     * @param $fileNames
-     */
-    public static function setEnvFiles($fileNames)
-    {
-        self::$envFiles = $fileNames;
-    }
-
+    /** @var string $name */
     public static function set($name)
     {
-        Dotenv::createMutable(sprintf('%s/%s.env', App::environmentPath(), $name));
+        Dotenv::createMutable(App::environmentPath(), $name)->load();
     }
 }
