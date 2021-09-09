@@ -2,7 +2,6 @@
 
 namespace KLC;
 
-use Dotenv\Dotenv;
 use Illuminate\Support\Facades\App;
 
 class EnvSwitch
@@ -10,6 +9,11 @@ class EnvSwitch
     /** @var string $name */
     public static function set($name)
     {
-        Dotenv::createMutable(App::environmentPath(), $name)->load();
+        if (method_exists(\Dotenv\Dotenv::class, 'createMutable')){
+            \Dotenv\Dotenv::createMutable(App::environmentPath(), $name)->load();
+        } elseif (method_exists(\Dotenv::class, 'makeMutable')) {
+            \Dotenv::makeMutable();
+            \Dotenv::load(App::environmentPath(), $name);
+        }
     }
 }
