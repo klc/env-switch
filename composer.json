@@ -1,0 +1,32 @@
+{
+    "name": "klc/env-switch",
+    "description": "multiple env usage for laravel project",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mustafa Kılıç",
+            "email": "m_kilic@outlook.com.tr"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "illuminate/support": "^5.1 || ^6.0 || ^7.0 || ^8.0",
+        "vlucas/phpdotenv": "^1.0 || ^2.0 || ^3.0 || ^4.0 || ^5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "KLC\\" : "src/"
+        },
+        "files": [
+            "src/helper.php"
+        ]
+    },
+    "extra": {
+        "laravel" : {
+            "providers" : [
+                "KLC\\EnvSwitchProvider"
+            ]
+        }
+    }
+}
